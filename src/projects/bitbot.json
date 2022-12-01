@@ -3,5 +3,9 @@
   "developer": "UTDesign Makerspace",
   "repo": "https://github.com/utdesign-makerspace/BitBot",
   "link": "https://wiki.utd.ms/bitbot",
-  "categories": ["Social"]
+  "categories": [
+    {
+      "name": "Social"
+    }
+  ]
 }

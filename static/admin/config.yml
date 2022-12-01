@@ -1,0 +1,46 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: static/media
+public_folder: /media
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "src/projects"
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Developer", name: "developer", widget: "string" }
+      - { label: "Repo", name: "repo", widget: "string" }
+      - { label: "Link", name: "link", widget: "string" }
+      - {
+          label: "Categories",
+          name: "categories",
+          widget: "list",
+          fields:
+            [
+              {
+                label: "Name",
+                name: "name",
+                widget: "relation",
+                collection: "categories",
+                searchFields: ["name"],
+                valueField: "name",
+              },
+            ],
+        }
+  - name: "categories"
+    label: "Categories"
+    folder: "src/categories"
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Color", name: "color", widget: "color" }

@@ -11,7 +11,11 @@ interface ProjectType {
   developer: string;
   repo: string;
   link: string;
-  categories: string[];
+  categories: Category[];
+}
+
+interface Category {
+  name: string;
 }
 
 const columns: ColumnsType<ProjectType> = [
@@ -66,8 +70,12 @@ const columns: ColumnsType<ProjectType> = [
     dataIndex: "categories",
     render: (_, { categories }) => (
       <>
-        {categories.map((tag) => {
-          return <Tag key={tag}>{tag}</Tag>;
+        {categories.map((category) => {
+          return (
+            <Tag color="blue" key={category.name}>
+              {category.name}
+            </Tag>
+          );
         })}
       </>
     ),
@@ -120,7 +128,9 @@ const ProjectsData = () => {
             developer
             repo
             link
-            categories
+            categories {
+              name
+            }
           }
         }
       }
