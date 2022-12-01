@@ -1,0 +1,11 @@
+:root {
+  --page-width: 1260px;
+  --section-padding: 100px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
