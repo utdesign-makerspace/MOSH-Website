@@ -7,6 +7,7 @@ import { IndexContent, IndexSection, IndexText } from "../components/index";
 
 import "./style.css";
 import IndexImage from "../components/indeximage";
+import Footer from "../components/footer";
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -40,7 +41,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <MoshSubtitle style={{ color: "#fff" }}>
             UTDesign Makerspace is offering free cloud computing to UT Dallas
             student organizations with open-source software through its
-            Makerspace Open-Source Software (MOSS) program.
+            Makerspace Open-Source Hosting (MOSH) program.
           </MoshSubtitle>
         </div>
       </div>
@@ -134,6 +135,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </ConfigProvider>
   );
 };
