@@ -1,4 +1,6 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+
 import { Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { FaLink, FaTimes } from "react-icons/fa";
@@ -71,24 +73,36 @@ const columns: ColumnsType<ProjectType> = [
   },
 ];
 
-const data: ProjectType[] = [
-  {
-    name: "BitBot",
-    developer: "UTDesign Makerspace",
-    repo: "https://github.com/utdesign-makerspace/BitBot",
-    link: "https://wiki.utd.ms/bitbot",
-    categories: ["Social"],
-  },
-  {
-    name: "Temoc Bot",
-    developer: "UT Dallas Discord",
-    repo: "",
-    link: "https://utdallasdiscord.com/",
-    categories: ["Social"],
-  },
-];
-
-const ProjectsTable: React.FC = () => (
-  <Table columns={columns} dataSource={data} />
-);
+const ProjectsTable: React.FC = () => {
+  console.log(ProjectsData());
+  return <Table columns={columns} dataSource={ProjectsData()} />;
+};
 export default ProjectsTable;
+
+const ProjectsData = () => {
+  const { allProjectsJson } = useStaticQuery(graphql`
+    query ProjectsQuery {
+      allProjectsJson {
+        edges {
+          node {
+            name
+            developer
+            repo
+            link
+            categories
+          }
+        }
+      }
+    }
+  `);
+
+  // map edges to array of projects
+  let projects: ProjectType[] = allProjectsJson.edges.map((edge: any) => ({
+    name: edge.node.name,
+    developer: edge.node.developer,
+    repo: edge.node.repo,
+    link: edge.node.link,
+    categories: edge.node.categories,
+  }));
+  return projects;
+};
