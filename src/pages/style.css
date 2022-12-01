@@ -1,6 +1,7 @@
 :root {
   --page-width: 1260px;
   --section-padding: 100px;
+  --makerspace-primary-color: #bad1cd;
 }
 
 * {

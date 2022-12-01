@@ -6,7 +6,7 @@ export const MoshTitle = styled.p`
   font-weight: 700 !important;
   font-size: 56px !important;
 
-  background: -webkit-linear-gradient(-70deg, #db4247 0%, #a83246 100%);
+  background: -webkit-linear-gradient(-70deg, #bad1cd 0%, #7ca19b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-direction-break: clone;
@@ -17,7 +17,7 @@ export const MoshHeader = styled.p`
   font-weight: 700 !important;
   font-size: 48px !important;
 
-  background: -webkit-linear-gradient(-70deg, #db4247 0%, #a83246 100%);
+  background: -webkit-linear-gradient(-70deg, #bad1cd 0%, #7ca19b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-direction-break: clone;

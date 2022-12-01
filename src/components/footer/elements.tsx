@@ -7,7 +7,7 @@ export const FooterContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 50vh 0 50vh #343a40;
+  box-shadow: 0 50vh 0 50vh #121212;
 `;
 
 export const FooterWrapper = styled.div`
@@ -15,7 +15,7 @@ export const FooterWrapper = styled.div`
   max-width: 1180px;
   display: grid;
   gap: 0 20px;
-  border-bottom: 1px solid #c1393d;
+  border-bottom: 1px solid var(--makerspace-primary-color);
   grid-template-columns: repeat(4, 1fr);
 
   @media screen and (min-width: 768px) {
@@ -44,9 +44,10 @@ export const FooterColumn = styled.div`
 `;
 
 export const FooterLogo = styled.img`
-  width: 100%;
+  max-width: 100%;
   padding: 3% 3%;
   background: #c1393d;
+  max-height: 51px;
 `;
 
 export const FooterSOC = styled.p`
@@ -59,7 +60,7 @@ export const FooterSOC = styled.p`
 `;
 
 export const FooterColumnHeader = styled.p`
-  color: #c1393d;
+  color: var(--makerspace-primary-color);
 `;
 
 export const FooterText = styled.p`
