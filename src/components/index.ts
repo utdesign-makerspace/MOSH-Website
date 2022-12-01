@@ -21,6 +21,7 @@ export const IndexText = styled.div`
 
   @media screen and (max-width: 1025px) {
     text-align: left !important;
+    order: 1;
   }
 `;
 
