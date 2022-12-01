@@ -38,7 +38,7 @@ const columns: ColumnsType<ProjectType> = [
     title: "Developer",
     dataIndex: "developer",
     key: "developer",
-    sorter: (a, b) => a.name.localeCompare(b.name),
+    sorter: (a, b) => a.developer.localeCompare(b.developer),
   },
   {
     title: "Open-Source",
@@ -98,7 +98,7 @@ const columnsMobile: ColumnsType<ProjectType> = [
     title: "Developer",
     dataIndex: "developer",
     key: "developer",
-    sorter: (a, b) => a.name.localeCompare(b.name),
+    sorter: (a, b) => a.developer.localeCompare(b.developer),
   },
 ];
 
