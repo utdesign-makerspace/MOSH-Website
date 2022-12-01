@@ -10,7 +10,7 @@ import {
   SidebarSocials,
   Social,
 } from "./elements";
-import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 interface SidebarInterface {

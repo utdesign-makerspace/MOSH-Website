@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBars, FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaBars, FaDiscord } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import {
   Nav,
@@ -14,7 +14,6 @@ import {
   NavLogoImg,
 } from "./elements";
 import MoshLogo from "../../images/mosh.svg";
-import { PageProps } from "gatsby";
 
 interface NavbarInterface {
   toggle: () => void;
