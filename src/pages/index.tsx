@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { graphql, HeadFC, navigate, PageProps } from "gatsby";
+import { InView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 import { ConfigProvider, Button, Divider, Space } from "antd";
 import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
@@ -12,12 +14,30 @@ import "./style.css";
 import IndexImage from "../components/indeximage";
 import Footer from "../components/footer";
 
-const IndexPage: React.FC<PageProps> = () => {
+type DataProps = {
+  allProjectsJson: {
+    edges: [
+      {
+        node: {
+          name: string;
+          developer: string;
+        };
+      }
+    ];
+  };
+};
+
+const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  let projectCount = data.allProjectsJson.edges.length;
+  let devCount = new Set(
+    data.allProjectsJson.edges.map((edge) => edge.node.developer)
+  ).size;
 
   return (
     <ConfigProvider
@@ -69,15 +89,92 @@ const IndexPage: React.FC<PageProps> = () => {
         <div style={{ maxWidth: "var(--page-width)", width: "100%" }}>
           <IndexSection>
             <IndexText>
-              <MoshHeader>A focus on community.</MoshHeader>
-              <MoshSubtitle>
-                Our goal is to provide a platform for student organizations to
-                develop their projects and ideas. We want to help students learn
-                about cloud computing and provide their knowledge.
-              </MoshSubtitle>
+              <InView threshold={0.25}>
+                {({ ref, inView }) => (
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={
+                      inView && {
+                        x: 0,
+                        opacity: 1,
+                        transition: { duration: 0.5 },
+                      }
+                    }
+                    ref={ref}
+                  >
+                    <MoshHeader>A focus on community.</MoshHeader>
+                    <MoshSubtitle>
+                      Our goal is to provide a platform for student
+                      organizations to develop their projects and ideas. We want
+                      to help students learn about cloud computing and provide
+                      their knowledge.
+                    </MoshSubtitle>
+                  </motion.div>
+                )}
+              </InView>
             </IndexText>
             <IndexContent>
-              <IndexImage name="Test image" filename="index_test.png" />
+              <InView threshold={0.25}>
+                {({ ref, inView }) => (
+                  <motion.div
+                    initial={{ x: 10, opacity: 0 }}
+                    animate={
+                      inView && {
+                        x: 0,
+                        opacity: 1,
+                        transition: { duration: 0.5 },
+                      }
+                    }
+                    ref={ref}
+                  >
+                    <MoshHeader
+                      style={{
+                        background:
+                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        WebkitBoxDecorationBreak: "clone",
+                        paddingBottom: "0",
+                      }}
+                    >
+                      99.9% uptime
+                    </MoshHeader>
+                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                      for all UTDesign Makerspace infrastructure
+                    </MoshSubtitle>
+                    <MoshHeader
+                      style={{
+                        background:
+                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        WebkitBoxDecorationBreak: "clone",
+                        paddingBottom: "0",
+                      }}
+                    >
+                      {projectCount} student projects
+                    </MoshHeader>
+                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                      currently hosted through MOSH
+                    </MoshSubtitle>
+                    <MoshHeader
+                      style={{
+                        background:
+                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        WebkitBoxDecorationBreak: "clone",
+                        paddingBottom: "0",
+                      }}
+                    >
+                      {devCount} developers
+                    </MoshHeader>
+                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                      currently hosting their projects through MOSH
+                    </MoshSubtitle>
+                  </motion.div>
+                )}
+              </InView>
             </IndexContent>
           </IndexSection>
 
@@ -137,10 +234,16 @@ const IndexPage: React.FC<PageProps> = () => {
               </MoshSubtitle>
               <div style={{ paddingBottom: "20px" }} />
               <Space>
-                <Button size="large" type="primary">
+                <Button
+                  size="large"
+                  type="primary"
+                  onClick={() => navigate("/projects")}
+                >
                   Apply Now
                 </Button>
-                <Button size="large">View Projects</Button>
+                <Button size="large" onClick={() => navigate("/projects")}>
+                  View Projects
+                </Button>
               </Space>
             </div>
           </div>
@@ -156,3 +259,16 @@ export default IndexPage;
 export const Head: HeadFC = () => (
   <title>Makerspace Open-Source Software</title>
 );
+
+export const query = graphql`
+  query DeveloperQuery {
+    allProjectsJson {
+      edges {
+        node {
+          name
+          developer
+        }
+      }
+    }
+  }
+`;

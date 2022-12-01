@@ -1,5 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import { useWindowDimensions } from "../lib/hooks";
 
 import { Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -10,7 +11,11 @@ interface ProjectType {
   developer: string;
   repo: string;
   link: string;
-  categories: string[];
+  categories: Category[];
+}
+
+interface Category {
+  name: string;
 }
 
 const columns: ColumnsType<ProjectType> = [
@@ -37,7 +42,7 @@ const columns: ColumnsType<ProjectType> = [
     title: "Developer",
     dataIndex: "developer",
     key: "developer",
-    sorter: (a, b) => a.name.localeCompare(b.name),
+    sorter: (a, b) => a.developer.localeCompare(b.developer),
   },
   {
     title: "Open-Source",
@@ -65,16 +70,50 @@ const columns: ColumnsType<ProjectType> = [
     dataIndex: "categories",
     render: (_, { categories }) => (
       <>
-        {categories.map((tag) => {
-          return <Tag key={tag}>{tag}</Tag>;
+        {categories.map((category) => {
+          return (
+            <Tag color="blue" key={category.name}>
+              {category.name}
+            </Tag>
+          );
         })}
       </>
     ),
   },
 ];
 
+const columnsMobile: ColumnsType<ProjectType> = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+    render: (i, { link, repo }) =>
+      link ? (
+        <a href={link} target="_blank">
+          {i}
+        </a>
+      ) : repo ? (
+        <a href={repo} target="_blank">
+          {i}
+        </a>
+      ) : (
+        i
+      ),
+    sorter: (a, b) => a.name.localeCompare(b.name),
+    defaultSortOrder: "ascend",
+  },
+  {
+    title: "Developer",
+    dataIndex: "developer",
+    key: "developer",
+    sorter: (a, b) => a.developer.localeCompare(b.developer),
+  },
+];
+
 const ProjectsTable: React.FC = () => {
-  console.log(ProjectsData());
+  const { height, width } = useWindowDimensions();
+  if (width <= 768)
+    return <Table columns={columnsMobile} dataSource={ProjectsData()} />;
   return <Table columns={columns} dataSource={ProjectsData()} />;
 };
 export default ProjectsTable;
@@ -89,7 +128,9 @@ const ProjectsData = () => {
             developer
             repo
             link
-            categories
+            categories {
+              name
+            }
           }
         }
       }

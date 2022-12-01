@@ -39,6 +39,7 @@ const config: GatsbyConfig = {
       },
       __key: "pages",
     },
+    "gatsby-plugin-netlify-cms",
   ],
 };
 

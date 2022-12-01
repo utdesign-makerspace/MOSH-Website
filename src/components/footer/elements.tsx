@@ -44,10 +44,9 @@ export const FooterColumn = styled.div`
 `;
 
 export const FooterLogo = styled.img`
-  max-width: 100%;
+  width: 100%;
   padding: 3% 3%;
   background: #c1393d;
-  max-height: 51px;
 `;
 
 export const FooterSOC = styled.p`
