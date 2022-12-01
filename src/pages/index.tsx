@@ -6,6 +6,7 @@ import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
 import { IndexContent, IndexSection, IndexText } from "../components/index";
 
 import "./style.css";
+import IndexImage from "../components/indeximage";
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -60,15 +61,19 @@ const IndexPage: React.FC<PageProps> = () => {
                 about cloud computing and provide their knowledge.
               </MoshSubtitle>
             </IndexText>
-            <IndexContent></IndexContent>
+            <IndexContent>
+              <IndexImage name="Test image" filename="index_test.png" />
+            </IndexContent>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
 
           <IndexSection>
-            <IndexContent></IndexContent>
+            <IndexContent>
+              <IndexImage name="Test image" filename="index_test.png" />
+            </IndexContent>
             <IndexText style={{ textAlign: "right" }}>
-              <MoshHeader>No software restrictions.</MoshHeader>
+              <MoshHeader>No app restrictions.</MoshHeader>
               <MoshSubtitle>
                 Outside of open-sourcing your software and a small attribution,
                 there are no restrictions on what you can do with your software
@@ -88,7 +93,9 @@ const IndexPage: React.FC<PageProps> = () => {
                 Sure. We will help you get everything running.
               </MoshSubtitle>
             </IndexText>
-            <IndexContent></IndexContent>
+            <IndexContent>
+              <IndexImage name="Test image" filename="index_test.png" />
+            </IndexContent>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />

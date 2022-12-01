@@ -5,6 +5,8 @@ export const IndexSection = styled(Row)`
   width: 100%;
   display: grid;
   padding: var(--section-padding) 0;
+  gap: 40px;
+  align-items: center;
 
   grid-template-columns: repeat(6, 1fr);
 
