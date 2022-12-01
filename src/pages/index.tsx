@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { HeadFC, navigate, PageProps } from "gatsby";
 
 import { ConfigProvider, Button, Divider, Space } from "antd";
 import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
@@ -137,10 +137,16 @@ const IndexPage: React.FC<PageProps> = () => {
               </MoshSubtitle>
               <div style={{ paddingBottom: "20px" }} />
               <Space>
-                <Button size="large" type="primary">
+                <Button
+                  size="large"
+                  type="primary"
+                  onClick={() => navigate("/projects")}
+                >
                   Apply Now
                 </Button>
-                <Button size="large">View Projects</Button>
+                <Button size="large" onClick={() => navigate("/projects")}>
+                  View Projects
+                </Button>
               </Space>
             </div>
           </div>
