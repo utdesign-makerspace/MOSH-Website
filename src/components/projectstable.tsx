@@ -1,6 +1,5 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { useWindowDimensions } from "../lib/hooks";
 
 import { Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -111,9 +110,10 @@ const columnsMobile: ColumnsType<ProjectType> = [
 ];
 
 const ProjectsTable: React.FC = () => {
-  const { height, width } = useWindowDimensions();
-  if (width <= 768)
-    return <Table columns={columnsMobile} dataSource={ProjectsData()} />;
+  // TODO: Find a way to do this server-side
+  // const { height, width } = useWindowDimensions();
+  // if (width <= 768)
+  //   return <Table columns={columnsMobile} dataSource={ProjectsData()} />;
   return <Table columns={columns} dataSource={ProjectsData()} />;
 };
 export default ProjectsTable;
