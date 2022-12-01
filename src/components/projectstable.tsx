@@ -69,13 +69,15 @@ const columns: ColumnsType<ProjectType> = [
     dataIndex: "categories",
     render: (_, { categories }) => (
       <>
-        {categories.map((category) => {
-          return (
-            <Tag color="blue" key={category.name}>
-              {category.name}
-            </Tag>
-          );
-        })}
+        {categories
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((category) => {
+            return (
+              <Tag color="blue" key={category.name}>
+                {category.name}
+              </Tag>
+            );
+          })}
       </>
     ),
   },

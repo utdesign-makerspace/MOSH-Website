@@ -43,4 +43,3 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Name", name: "name", widget: "string" }
-      - { label: "Color", name: "color", widget: "color" }
