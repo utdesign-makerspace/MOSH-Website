@@ -2,7 +2,13 @@ import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-const IndexImage = (props: any) => (
+interface StaticImageProps {
+  name: string;
+  filename: string;
+  style?: React.CSSProperties;
+}
+
+const IndexImage = (props: StaticImageProps) => (
   <StaticQuery
     query={graphql`
       query {
@@ -33,9 +39,7 @@ const IndexImage = (props: any) => (
           alt={props.name}
           title={props.name}
           objectFit="contain"
-          style={{
-            maxWidth: "100%",
-          }}
+          style={props.style}
         />
       );
     }}

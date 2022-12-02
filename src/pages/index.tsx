@@ -11,7 +11,7 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 
 import "./style.css";
-import IndexImage from "../components/indeximage";
+import StaticImage from "../components/staticimage";
 import Footer from "../components/footer";
 import HelmetComponent from "../components/helmet";
 
@@ -90,110 +90,218 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
       >
         <div style={{ maxWidth: "var(--page-width)", width: "100%" }}>
           <IndexSection>
-            <IndexText>
-              <InView threshold={0.25}>
-                {({ ref, inView }) => (
-                  <motion.div
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={
-                      inView && {
-                        x: 0,
-                        opacity: 1,
-                        transition: { duration: 0.5 },
+            <InView threshold={0.25}>
+              {({ ref, inView }) => (
+                <>
+                  <IndexText>
+                    <motion.div
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
                       }
-                    }
-                    ref={ref}
-                  >
-                    <MoshHeader>A focus on community.</MoshHeader>
-                    <MoshSubtitle>
-                      Our goal is to provide a platform for student
-                      organizations to develop their projects and ideas. We want
-                      to help students learn about cloud computing and provide
-                      their knowledge.
-                    </MoshSubtitle>
-                  </motion.div>
-                )}
-              </InView>
-            </IndexText>
-            <IndexContent>
-              <InView threshold={0.25}>
-                {({ ref, inView }) => (
-                  <motion.div
-                    initial={{ x: 10, opacity: 0 }}
-                    animate={
-                      inView && {
-                        x: 0,
-                        opacity: 1,
-                        transition: { duration: 0.5 },
+                      ref={ref}
+                    >
+                      <MoshHeader>A focus on community.</MoshHeader>
+                      <MoshSubtitle>
+                        Our goal is to provide a platform for student
+                        organizations to develop their projects and ideas. We
+                        want to help students learn about cloud computing and
+                        provide their knowledge.
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexText>
+                  <IndexContent>
+                    <motion.div
+                      initial={{ x: 10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
                       }
-                    }
-                    ref={ref}
-                  >
-                    <MoshHeader
-                      style={{
-                        background:
-                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        WebkitBoxDecorationBreak: "clone",
-                        paddingBottom: "0",
-                      }}
+                      ref={ref}
                     >
-                      99.9% uptime
-                    </MoshHeader>
-                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
-                      for all UTDesign Makerspace infrastructure
-                    </MoshSubtitle>
-                    <MoshHeader
-                      style={{
-                        background:
-                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        WebkitBoxDecorationBreak: "clone",
-                        paddingBottom: "0",
-                      }}
-                    >
-                      {projectCount} student projects
-                    </MoshHeader>
-                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
-                      currently hosted through MOSH
-                    </MoshSubtitle>
-                    <MoshHeader
-                      style={{
-                        background:
-                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        WebkitBoxDecorationBreak: "clone",
-                        paddingBottom: "0",
-                      }}
-                    >
-                      {devCount} developers
-                    </MoshHeader>
-                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
-                      currently hosting their projects through MOSH
-                    </MoshSubtitle>
-                  </motion.div>
-                )}
-              </InView>
-            </IndexContent>
+                      <MoshHeader
+                        style={{
+                          background:
+                            "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          WebkitBoxDecorationBreak: "clone",
+                          paddingBottom: "0",
+                        }}
+                      >
+                        99.9% uptime
+                      </MoshHeader>
+                      <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                        for all UTDesign Makerspace infrastructure
+                      </MoshSubtitle>
+                      <MoshHeader
+                        style={{
+                          background:
+                            "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          WebkitBoxDecorationBreak: "clone",
+                          paddingBottom: "0",
+                        }}
+                      >
+                        {projectCount} student projects
+                      </MoshHeader>
+                      <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                        currently hosted through MOSH
+                      </MoshSubtitle>
+                      <MoshHeader
+                        style={{
+                          background:
+                            "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          WebkitBoxDecorationBreak: "clone",
+                          paddingBottom: "0",
+                        }}
+                      >
+                        {devCount} developers
+                      </MoshHeader>
+                      <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                        currently hosting their projects through MOSH
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexContent>
+                </>
+              )}
+            </InView>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
 
           <IndexSection>
-            <IndexContent>
-              <IndexImage name="Test image" filename="index_test.png" />
-            </IndexContent>
-            <IndexText style={{ textAlign: "right" }}>
-              <MoshHeader>No app restrictions.</MoshHeader>
-              <MoshSubtitle>
-                Outside of open-sourcing your software and a small attribution,
-                there are no restrictions on what you can do with your software
-                as long as it is for the benefit of the UT Dallas community.
-              </MoshSubtitle>
-            </IndexText>
+            <InView threshold={0.25}>
+              {({ ref, inView }) => (
+                <>
+                  <IndexContent
+                    style={{
+                      // allow children to be positioned using top and left
+                      position: "relative",
+                      paddingBottom: "50%",
+                    }}
+                  >
+                    <motion.div
+                      style={{
+                        position: "absolute",
+                        left: "15%",
+                        width: "20%",
+                      }}
+                      animate={{
+                        top: ["0%", "5%", "0%"],
+                      }}
+                      transition={{
+                        duration: 5,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                      }}
+                    >
+                      <a href="https://wiki.utd.ms/bitbot">
+                        <StaticImage
+                          name="BitBot"
+                          filename="index_bitbot.png"
+                          style={{
+                            filter:
+                              "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
+                            display: "block",
+                            width: "100%",
+                          }}
+                        />
+                      </a>
+                    </motion.div>
+                    <motion.div
+                      style={{
+                        position: "absolute",
+                        left: "40%",
+                        width: "20%",
+                      }}
+                      animate={{
+                        top: ["0%", "5%", "0%"],
+                      }}
+                      transition={{
+                        duration: 5,
+                        delay: 0.5,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                      }}
+                    >
+                      <a href="https://wiki.utd.ms/bitbot">
+                        <StaticImage
+                          name="BitBot"
+                          filename="index_bitbot.png"
+                          style={{
+                            filter:
+                              "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
+                            display: "block",
+                            width: "100%",
+                          }}
+                        />
+                      </a>
+                    </motion.div>
+                    <motion.div
+                      style={{
+                        position: "absolute",
+                        left: "65%",
+                        width: "20%",
+                      }}
+                      animate={{
+                        top: ["0%", "5%", "0%"],
+                      }}
+                      transition={{
+                        duration: 5,
+                        delay: 1.0,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                      }}
+                    >
+                      <a href="https://wiki.utd.ms/bitbot">
+                        <StaticImage
+                          name="BitBot"
+                          filename="index_bitbot.png"
+                          style={{
+                            filter:
+                              "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
+                            display: "block",
+                            width: "100%",
+                          }}
+                        />
+                      </a>
+                    </motion.div>
+                    <StaticImage
+                      name="BitBot"
+                      filename="index_server.png"
+                      style={{
+                        width: "70%",
+                        bottom: 0,
+                        left: "15%",
+                        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
+                        position: "absolute",
+                        display: "block",
+                      }}
+                    />
+                  </IndexContent>
+                  <IndexText style={{ textAlign: "right" }}>
+                    <MoshHeader>No app restrictions.</MoshHeader>
+                    <MoshSubtitle>
+                      Outside of open-sourcing your software and a small
+                      attribution, there are no restrictions on what you can do
+                      with your software as long as it is for the benefit of the
+                      UT Dallas community.
+                    </MoshSubtitle>
+                  </IndexText>
+                </>
+              )}
+            </InView>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
@@ -208,7 +316,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
               </MoshSubtitle>
             </IndexText>
             <IndexContent>
-              <IndexImage name="Test image" filename="index_test.png" />
+              <StaticImage name="Test image" filename="index_test.png" />
             </IndexContent>
           </IndexSection>
 
