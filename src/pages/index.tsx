@@ -13,6 +13,7 @@ import Sidebar from "../components/sidebar";
 import "./style.css";
 import IndexImage from "../components/indeximage";
 import Footer from "../components/footer";
+import HelmetComponent from "../components/helmet";
 
 type DataProps = {
   allProjectsJson: {
@@ -47,6 +48,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         },
       }}
     >
+      <HelmetComponent />
       <Navbar toggle={toggle} transparent={true} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
@@ -255,10 +257,6 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 };
 
 export default IndexPage;
-
-export const Head: HeadFC = () => (
-  <title>Makerspace Open-Source Software</title>
-);
 
 export const query = graphql`
   query DeveloperQuery {

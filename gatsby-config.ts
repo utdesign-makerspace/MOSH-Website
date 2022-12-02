@@ -48,6 +48,12 @@ const config: GatsbyConfig = {
       __key: "pages",
     },
     "gatsby-plugin-netlify-cms",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: `${__dirname}/src/images/icon.png`,
+      },
+    },
   ],
 };
 

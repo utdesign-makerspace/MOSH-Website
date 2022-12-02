@@ -10,6 +10,7 @@ import Sidebar from "../components/sidebar";
 import "./style.css";
 import Footer from "../components/footer";
 import ProjectsTable from "../components/projectstable";
+import HelmetComponent from "../components/helmet";
 
 const ProjectsPage: React.FC<PageProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +27,7 @@ const ProjectsPage: React.FC<PageProps> = () => {
         },
       }}
     >
+      <HelmetComponent title={"Projects"} />
       <Navbar toggle={toggle} transparent={false} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
@@ -66,7 +68,3 @@ const ProjectsPage: React.FC<PageProps> = () => {
 };
 
 export default ProjectsPage;
-
-export const Head: HeadFC = () => (
-  <title>Projects - Makerspace Open-Source Software</title>
-);
