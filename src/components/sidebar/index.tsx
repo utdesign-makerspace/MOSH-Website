@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen, toggle }: SidebarInterface) => {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLinkA href="https://learn.utd.ms/">Apply</SidebarLinkA>
+          <SidebarLinkG to="/apply">Apply</SidebarLinkG>
           <SidebarLinkG to="/projects">Projects</SidebarLinkG>
           <SidebarSocials>
             <Social href="https://utd.ms/discord" target="_blank">

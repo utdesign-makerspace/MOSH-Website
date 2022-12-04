@@ -3,10 +3,10 @@ import { useState } from "react";
 import { graphql, HeadFC, navigate, PageProps } from "gatsby";
 import { InView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 
-import { ConfigProvider, Button, Divider, Space } from "antd";
+import { ConfigProvider, Button, Divider, Space, Row } from "antd";
 import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
-import { IndexContent, IndexSection, IndexText } from "../components/index";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 
@@ -48,7 +48,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         },
       }}
     >
-      <HelmetComponent />
+      <HelmetComponent title={"Apply"} />
       <Navbar toggle={toggle} transparent={true} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
@@ -76,6 +76,19 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             student organizations with open-source software through its
             Makerspace Open-Source Hosting (MOSH) program.
           </MoshSubtitle>
+          <div style={{ paddingBottom: "20px" }} />
+          <Space>
+            <Button
+              size="large"
+              type="primary"
+              onClick={() => navigate("/apply")}
+            >
+              Apply Now
+            </Button>
+            <Button size="large" onClick={() => navigate("/projects")}>
+              View Projects
+            </Button>
+          </Space>
         </div>
       </div>
 
@@ -464,7 +477,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 <Button
                   size="large"
                   type="primary"
-                  onClick={() => navigate("/projects")}
+                  onClick={() => navigate("/apply")}
                 >
                   Apply Now
                 </Button>
@@ -494,4 +507,33 @@ export const query = graphql`
       }
     }
   }
+`;
+
+const IndexSection = styled(Row)`
+  width: 100%;
+  display: grid;
+  padding: var(--section-padding) 0;
+  gap: 40px;
+  align-items: center;
+
+  grid-template-columns: repeat(6, 1fr);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+`;
+
+const IndexText = styled.div`
+  grid-column: span 6;
+  grid-row-end: span 2;
+
+  @media screen and (max-width: 1025px) {
+    text-align: left !important;
+    order: 1;
+  }
+`;
+
+const IndexContent = styled.div`
+  grid-column: span 6;
+  grid-row-end: span 2;
 `;

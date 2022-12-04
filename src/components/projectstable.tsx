@@ -83,6 +83,24 @@ const columns: ColumnsType<ProjectType> = [
       </>
     ),
     responsive: ["md"],
+    filters: [
+      { text: "Creative Arts", value: "Creative Arts" },
+      { text: "Education", value: "Education" },
+      { text: "Entertainment", value: "Entertainment" },
+      { text: "Fashion & Beauty", value: "Fashion & Beauty" },
+      { text: "Finance", value: "Finance" },
+      { text: "Fitness & Health", value: "Fitness & Health" },
+      { text: "Gaming", value: "Gaming" },
+      { text: "Music", value: "Music" },
+      { text: "Relationships & Identity", value: "Relationships & Identity" },
+      { text: "Science & Tech", value: "Science & Tech" },
+      { text: "Social", value: "Social" },
+      { text: "Sports", value: "Sports" },
+      { text: "Travel & Food", value: "Travel & Food" },
+    ],
+    onFilter: (value, record) => {
+      return record.categories.some((category) => category.name === value);
+    },
   },
 ];
 
