@@ -181,7 +181,7 @@ const GoogleForm = (
       frameBorder="0"
       marginHeight={0}
       marginWidth={0}
-      style={{ backgroundColor: "#bad1cd", borderRadius: "8px" }}
+      style={{ backgroundColor: "#bad1cd99", borderRadius: "8px" }}
     >
       Loading…
     </iframe>
