@@ -30,7 +30,7 @@ const ApplyPage: React.FC<PageProps> = () => {
         },
       }}
     >
-      <HelmetComponent />
+      <HelmetComponent title={"Apply"} />
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div

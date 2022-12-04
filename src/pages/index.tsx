@@ -48,7 +48,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         },
       }}
     >
-      <HelmetComponent title={"Apply"} />
+      <HelmetComponent />
       <Navbar toggle={toggle} transparent={true} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
