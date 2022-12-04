@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { HeadFC, navigate, PageProps } from "gatsby";
 
 import { ConfigProvider, Button, Divider, Space } from "antd";
 import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
@@ -50,6 +50,19 @@ const ProjectsPage: React.FC<PageProps> = () => {
             Below is a list of projects that UTDesign Makerspace currently hosts
             through its MOSH program.
           </MoshSubtitle>
+          <div style={{ paddingBottom: "20px" }} />
+          <Space>
+            <Button
+              size="large"
+              type="primary"
+              onClick={() => navigate("/apply")}
+            >
+              Apply Now
+            </Button>
+            <Button size="large" onClick={() => navigate("/")}>
+              More Information
+            </Button>
+          </Space>
         </div>
         <div style={{ paddingBottom: "40px" }} />
         <ConfigProvider
