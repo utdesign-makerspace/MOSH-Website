@@ -62,6 +62,8 @@ const columns: ColumnsType<ProjectType> = [
     onFilter: (value, record) =>
       value ? record.repo.length > 0 : record.repo.length === 0,
     filterMultiple: false,
+    responsive: ["md"],
+    width: 140,
   },
   {
     title: "Categories",
@@ -80,43 +82,40 @@ const columns: ColumnsType<ProjectType> = [
           })}
       </>
     ),
-  },
-];
-
-const columnsMobile: ColumnsType<ProjectType> = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    render: (i, { link, repo }) =>
-      link ? (
-        <a href={link} target="_blank">
-          {i}
-        </a>
-      ) : repo ? (
-        <a href={repo} target="_blank">
-          {i}
-        </a>
-      ) : (
-        i
-      ),
-    sorter: (a, b) => a.name.localeCompare(b.name),
-    defaultSortOrder: "ascend",
-  },
-  {
-    title: "Developer",
-    dataIndex: "developer",
-    key: "developer",
-    sorter: (a, b) => a.developer.localeCompare(b.developer),
+    responsive: ["md"],
+    filters: [
+      { text: "Creative Arts", value: "Creative Arts" },
+      { text: "Education", value: "Education" },
+      { text: "Entertainment", value: "Entertainment" },
+      { text: "Fashion & Beauty", value: "Fashion & Beauty" },
+      { text: "Finance", value: "Finance" },
+      { text: "Fitness & Health", value: "Fitness & Health" },
+      { text: "Gaming", value: "Gaming" },
+      { text: "Music", value: "Music" },
+      { text: "Relationships & Identity", value: "Relationships & Identity" },
+      { text: "Science & Tech", value: "Science & Tech" },
+      { text: "Social", value: "Social" },
+      { text: "Sports", value: "Sports" },
+      { text: "Travel & Food", value: "Travel & Food" },
+    ],
+    onFilter: (value, record) => {
+      return record.categories.some((category) => category.name === value);
+    },
   },
 ];
 
 const ProjectsTable: React.FC = () => {
-  // TODO: Find a way to do this server-side
-  // const { height, width } = useWindowDimensions();
-  // if (width <= 768)
-  //   return <Table columns={columnsMobile} dataSource={ProjectsData()} />;
-  return <Table columns={columns} dataSource={ProjectsData()} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={ProjectsData()}
+      pagination={{
+        defaultPageSize: 10,
+        showTotal: (total, range) =>
+          `${range[0]}-${range[1]} of ${total} projects`,
+      }}
+    />
+  );
 };
 export default ProjectsTable;
 

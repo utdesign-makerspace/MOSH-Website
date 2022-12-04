@@ -17,12 +17,12 @@ import MoshLogo from "../../images/mosh.svg";
 
 interface NavbarInterface {
   toggle: () => void;
-  transparent: boolean;
+  transparent?: boolean;
 }
 
 const Navbar = ({ toggle, transparent }: NavbarInterface) => {
   return (
-    <Nav transparent={transparent}>
+    <Nav transparent={transparent ? true : false}>
       <NavbarContainer>
         <NavLogo to="/">
           <NavLogoImg src={MoshLogo} />
@@ -32,7 +32,7 @@ const Navbar = ({ toggle, transparent }: NavbarInterface) => {
         </MobileIcon>
         <NavMenu>
           <NavItem>
-            <NavLinkA href="https://learn.utd.ms/">Apply</NavLinkA>
+            <NavLinkG to="/apply">Apply</NavLinkG>
           </NavItem>
           <NavItem>
             <NavLinkG to="/projects">Projects</NavLinkG>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { HeadFC, navigate, PageProps } from "gatsby";
 
 import { ConfigProvider, Button, Divider, Space } from "antd";
 import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
@@ -10,6 +10,7 @@ import Sidebar from "../components/sidebar";
 import "./style.css";
 import Footer from "../components/footer";
 import ProjectsTable from "../components/projectstable";
+import HelmetComponent from "../components/helmet";
 
 const ProjectsPage: React.FC<PageProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +27,7 @@ const ProjectsPage: React.FC<PageProps> = () => {
         },
       }}
     >
+      <HelmetComponent title={"Projects"} />
       <Navbar toggle={toggle} transparent={false} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
@@ -48,6 +50,19 @@ const ProjectsPage: React.FC<PageProps> = () => {
             Below is a list of projects that UTDesign Makerspace currently hosts
             through its MOSH program.
           </MoshSubtitle>
+          <div style={{ paddingBottom: "20px" }} />
+          <Space>
+            <Button
+              size="large"
+              type="primary"
+              onClick={() => navigate("/apply")}
+            >
+              Apply Now
+            </Button>
+            <Button size="large" onClick={() => navigate("/")}>
+              More Information
+            </Button>
+          </Space>
         </div>
         <div style={{ paddingBottom: "40px" }} />
         <ConfigProvider
@@ -66,7 +81,3 @@ const ProjectsPage: React.FC<PageProps> = () => {
 };
 
 export default ProjectsPage;
-
-export const Head: HeadFC = () => (
-  <title>Projects - Makerspace Open-Source Software</title>
-);

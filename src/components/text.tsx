@@ -27,4 +27,19 @@ export const MoshHeader = styled.p`
 
 export const MoshSubtitle = styled.p`
   font-size: clamp(16px, 2vw, 20px);
+
+  p {
+    margin-top: 10px;
+  }
+
+  ul,
+  ol {
+    margin-top: 6px;
+    padding-inline-start: 24px;
+  }
+
+  li {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
 `;

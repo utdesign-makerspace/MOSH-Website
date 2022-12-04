@@ -3,16 +3,17 @@ import { useState } from "react";
 import { graphql, HeadFC, navigate, PageProps } from "gatsby";
 import { InView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 
-import { ConfigProvider, Button, Divider, Space } from "antd";
+import { ConfigProvider, Button, Divider, Space, Row } from "antd";
 import { MoshTitle, MoshSubtitle, MoshHeader } from "../components/text";
-import { IndexContent, IndexSection, IndexText } from "../components/index";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 
 import "./style.css";
-import IndexImage from "../components/indeximage";
+import StaticImage from "../components/staticimage";
 import Footer from "../components/footer";
+import HelmetComponent from "../components/helmet";
 
 type DataProps = {
   allProjectsJson: {
@@ -47,6 +48,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         },
       }}
     >
+      <HelmetComponent title={"Apply"} />
       <Navbar toggle={toggle} transparent={true} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
@@ -74,6 +76,19 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             student organizations with open-source software through its
             Makerspace Open-Source Hosting (MOSH) program.
           </MoshSubtitle>
+          <div style={{ paddingBottom: "20px" }} />
+          <Space>
+            <Button
+              size="large"
+              type="primary"
+              onClick={() => navigate("/apply")}
+            >
+              Apply Now
+            </Button>
+            <Button size="large" onClick={() => navigate("/projects")}>
+              View Projects
+            </Button>
+          </Space>
         </div>
       </div>
 
@@ -88,126 +103,351 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
       >
         <div style={{ maxWidth: "var(--page-width)", width: "100%" }}>
           <IndexSection>
-            <IndexText>
-              <InView threshold={0.25}>
-                {({ ref, inView }) => (
-                  <motion.div
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={
-                      inView && {
-                        x: 0,
-                        opacity: 1,
-                        transition: { duration: 0.5 },
+            <InView threshold={0.25}>
+              {({ ref, inView }) => (
+                <>
+                  <IndexText>
+                    <motion.div
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
                       }
-                    }
-                    ref={ref}
-                  >
-                    <MoshHeader>A focus on community.</MoshHeader>
-                    <MoshSubtitle>
-                      Our goal is to provide a platform for student
-                      organizations to develop their projects and ideas. We want
-                      to help students learn about cloud computing and provide
-                      their knowledge.
-                    </MoshSubtitle>
-                  </motion.div>
-                )}
-              </InView>
-            </IndexText>
-            <IndexContent>
-              <InView threshold={0.25}>
-                {({ ref, inView }) => (
-                  <motion.div
-                    initial={{ x: 10, opacity: 0 }}
-                    animate={
-                      inView && {
-                        x: 0,
-                        opacity: 1,
-                        transition: { duration: 0.5 },
+                      ref={ref}
+                    >
+                      <MoshHeader>A focus on community.</MoshHeader>
+                      <MoshSubtitle>
+                        Our goal is to provide a platform for student
+                        organizations to develop their projects and ideas. We
+                        want to help students learn about cloud computing and
+                        provide their knowledge.
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexText>
+                  <IndexContent>
+                    <motion.div
+                      initial={{ x: 10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
                       }
-                    }
-                    ref={ref}
-                  >
-                    <MoshHeader
-                      style={{
-                        background:
-                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        WebkitBoxDecorationBreak: "clone",
-                        paddingBottom: "0",
-                      }}
+                      ref={ref}
                     >
-                      99.9% uptime
-                    </MoshHeader>
-                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
-                      for all UTDesign Makerspace infrastructure
-                    </MoshSubtitle>
-                    <MoshHeader
-                      style={{
-                        background:
-                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        WebkitBoxDecorationBreak: "clone",
-                        paddingBottom: "0",
-                      }}
-                    >
-                      {projectCount} student projects
-                    </MoshHeader>
-                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
-                      currently hosted through MOSH
-                    </MoshSubtitle>
-                    <MoshHeader
-                      style={{
-                        background:
-                          "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        WebkitBoxDecorationBreak: "clone",
-                        paddingBottom: "0",
-                      }}
-                    >
-                      {devCount} developers
-                    </MoshHeader>
-                    <MoshSubtitle style={{ paddingBottom: "16px" }}>
-                      currently hosting their projects through MOSH
-                    </MoshSubtitle>
-                  </motion.div>
-                )}
-              </InView>
-            </IndexContent>
+                      <MoshHeader
+                        style={{
+                          background:
+                            "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          WebkitBoxDecorationBreak: "clone",
+                          paddingBottom: "0",
+                        }}
+                      >
+                        99.9% uptime
+                      </MoshHeader>
+                      <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                        for all UTDesign Makerspace infrastructure
+                      </MoshSubtitle>
+                      <MoshHeader
+                        style={{
+                          background:
+                            "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          WebkitBoxDecorationBreak: "clone",
+                          paddingBottom: "0",
+                        }}
+                      >
+                        {projectCount} student projects
+                      </MoshHeader>
+                      <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                        currently hosted through MOSH
+                      </MoshSubtitle>
+                      <MoshHeader
+                        style={{
+                          background:
+                            "-webkit-linear-gradient(-70deg, #343a40 0%, #181b1f 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          WebkitBoxDecorationBreak: "clone",
+                          paddingBottom: "0",
+                        }}
+                      >
+                        {devCount} developers
+                      </MoshHeader>
+                      <MoshSubtitle style={{ paddingBottom: "16px" }}>
+                        currently hosting their projects through MOSH
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexContent>
+                </>
+              )}
+            </InView>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
 
           <IndexSection>
-            <IndexContent>
-              <IndexImage name="Test image" filename="index_test.png" />
-            </IndexContent>
-            <IndexText style={{ textAlign: "right" }}>
-              <MoshHeader>No app restrictions.</MoshHeader>
-              <MoshSubtitle>
-                Outside of open-sourcing your software and a small attribution,
-                there are no restrictions on what you can do with your software
-                as long as it is for the benefit of the UT Dallas community.
-              </MoshSubtitle>
-            </IndexText>
+            <InView threshold={0.25}>
+              {({ ref, inView }) => (
+                <>
+                  <IndexContent
+                    style={{
+                      position: "relative",
+                      paddingBottom: "50%",
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={
+                        inView && {
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          left: "15%",
+                          width: "20%",
+                          top: 0,
+                        }}
+                        animate={{
+                          y: ["10%", "25%", "10%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
+                        <StaticImage
+                          name="BitBot"
+                          filename="index_bitbot.png"
+                          style={{
+                            display: "block",
+                            width: "100%",
+                          }}
+                        />
+                      </motion.div>
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          left: "40%",
+                          width: "20%",
+                          top: 0,
+                        }}
+                        animate={{
+                          y: ["0%", "15%", "0%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          delay: 0.5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
+                        <StaticImage
+                          name="Moodle"
+                          filename="index_moodle.png"
+                          style={{
+                            display: "block",
+                            width: "100%",
+                          }}
+                        />
+                      </motion.div>
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          left: "65%",
+                          width: "20%",
+                          top: 0,
+                        }}
+                        animate={{
+                          y: ["10%", "25%", "10%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          delay: 1.0,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
+                        <StaticImage
+                          name="Minecraft server"
+                          filename="index_minecraft.png"
+                          style={{
+                            display: "block",
+                            width: "100%",
+                          }}
+                        />
+                      </motion.div>
+                      <StaticImage
+                        name="Rack server"
+                        filename="index_server.png"
+                        style={{
+                          width: "60%",
+                          bottom: 0,
+                          left: "20%",
+                          position: "absolute",
+                          display: "block",
+                        }}
+                      />
+                    </motion.div>
+                  </IndexContent>
+                  <IndexText style={{ textAlign: "right" }}>
+                    <motion.div
+                      initial={{ x: 10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <MoshHeader>No app restrictions.</MoshHeader>
+                      <MoshSubtitle>
+                        Outside of open-sourcing your software (if applicable)
+                        and a small attribution, there are no restrictions on
+                        what you can do with your software as long as it is for
+                        the benefit of the UT Dallas community.
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexText>
+                </>
+              )}
+            </InView>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
 
           <IndexSection>
-            <IndexText>
-              <MoshHeader>We'll get it done.</MoshHeader>
-              <MoshSubtitle>
-                Whether you want to run your software in a Linux container or
-                virtual machine, we've got you covered. Need to run a database?
-                Sure. We will help you get everything running.
-              </MoshSubtitle>
-            </IndexText>
-            <IndexContent>
-              <IndexImage name="Test image" filename="index_test.png" />
-            </IndexContent>
+            <InView threshold={0.25}>
+              {({ ref, inView }) => (
+                <>
+                  <IndexText>
+                    <motion.div
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <MoshHeader>We'll get it done.</MoshHeader>
+                      <MoshSubtitle>
+                        Want to run your software in a Linux container or
+                        virtual machine? We've got you covered. Need to run a
+                        database inside of a Docker container? Sure. We'll help
+                        you get everything running.
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexText>
+                  <IndexContent
+                    style={{
+                      position: "relative",
+                      paddingBottom: "50%",
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={
+                        inView && {
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          height: "100%",
+                          width: "100%",
+                        }}
+                        animate={{
+                          y: ["0%", "3%", "0%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
+                        <StaticImage
+                          name="Ubuntu"
+                          filename="index_ubuntu.png"
+                          style={{
+                            height: "17.5%",
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            display: "block",
+                          }}
+                        />
+                        <StaticImage
+                          name="Docker"
+                          filename="index_docker.png"
+                          style={{
+                            height: "17.5%",
+                            top: "25%",
+                            left: 0,
+                            right: 0,
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            display: "block",
+                          }}
+                        />
+                        <StaticImage
+                          name="Fedora"
+                          filename="index_fedora.png"
+                          style={{
+                            height: "17.5%",
+                            top: "50%",
+                            left: 0,
+                            right: 0,
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            display: "block",
+                          }}
+                        />
+                      </motion.div>
+                      <StaticImage
+                        name="Rack server"
+                        filename="index_server.png"
+                        style={{
+                          width: "60%",
+                          bottom: 0,
+                          left: "20%",
+                          position: "absolute",
+                          display: "block",
+                        }}
+                      />
+                    </motion.div>
+                  </IndexContent>
+                </>
+              )}
+            </InView>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
@@ -237,7 +477,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 <Button
                   size="large"
                   type="primary"
-                  onClick={() => navigate("/projects")}
+                  onClick={() => navigate("/apply")}
                 >
                   Apply Now
                 </Button>
@@ -256,10 +496,6 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => (
-  <title>Makerspace Open-Source Software</title>
-);
-
 export const query = graphql`
   query DeveloperQuery {
     allProjectsJson {
@@ -271,4 +507,33 @@ export const query = graphql`
       }
     }
   }
+`;
+
+const IndexSection = styled(Row)`
+  width: 100%;
+  display: grid;
+  padding: var(--section-padding) 0;
+  gap: 40px;
+  align-items: center;
+
+  grid-template-columns: repeat(6, 1fr);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+`;
+
+const IndexText = styled.div`
+  grid-column: span 6;
+  grid-row-end: span 2;
+
+  @media screen and (max-width: 1025px) {
+    text-align: left !important;
+    order: 1;
+  }
+`;
+
+const IndexContent = styled.div`
+  grid-column: span 6;
+  grid-row-end: span 2;
 `;
