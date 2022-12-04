@@ -1,0 +1,14 @@
+{
+  "name": "Wiki.js (UTDesign Makerspace)",
+  "developer": "requarks.io",
+  "repo": "https://github.com/Requarks/wiki",
+  "link": "https://wiki.utd.ms/",
+  "categories": [
+    {
+      "name": "Education"
+    },
+    {
+      "name": "Science & Tech"
+    }
+  ]
+}
