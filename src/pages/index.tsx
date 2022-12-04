@@ -186,118 +186,130 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 <>
                   <IndexContent
                     style={{
-                      // allow children to be positioned using top and left
                       position: "relative",
                       paddingBottom: "50%",
                     }}
                   >
                     <motion.div
-                      style={{
-                        position: "absolute",
-                        left: "15%",
-                        width: "20%",
-                      }}
-                      animate={{
-                        top: ["0%", "5%", "0%"],
-                      }}
-                      transition={{
-                        duration: 5,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                      }}
+                      initial={{ opacity: 0 }}
+                      animate={
+                        inView && {
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
                     >
-                      <a href="https://wiki.utd.ms/bitbot">
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          left: "15%",
+                          width: "20%",
+                          top: 0,
+                        }}
+                        animate={{
+                          y: ["10%", "25%", "10%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
                         <StaticImage
                           name="BitBot"
                           filename="index_bitbot.png"
                           style={{
-                            filter:
-                              "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
                             display: "block",
                             width: "100%",
                           }}
                         />
-                      </a>
-                    </motion.div>
-                    <motion.div
-                      style={{
-                        position: "absolute",
-                        left: "40%",
-                        width: "20%",
-                      }}
-                      animate={{
-                        top: ["0%", "5%", "0%"],
-                      }}
-                      transition={{
-                        duration: 5,
-                        delay: 0.5,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                      }}
-                    >
-                      <a href="https://wiki.utd.ms/bitbot">
+                      </motion.div>
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          left: "40%",
+                          width: "20%",
+                          top: 0,
+                        }}
+                        animate={{
+                          y: ["0%", "15%", "0%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          delay: 0.5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
                         <StaticImage
-                          name="BitBot"
-                          filename="index_bitbot.png"
+                          name="Moodle"
+                          filename="index_moodle.png"
                           style={{
-                            filter:
-                              "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
                             display: "block",
                             width: "100%",
                           }}
                         />
-                      </a>
-                    </motion.div>
-                    <motion.div
-                      style={{
-                        position: "absolute",
-                        left: "65%",
-                        width: "20%",
-                      }}
-                      animate={{
-                        top: ["0%", "5%", "0%"],
-                      }}
-                      transition={{
-                        duration: 5,
-                        delay: 1.0,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                      }}
-                    >
-                      <a href="https://wiki.utd.ms/bitbot">
+                      </motion.div>
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          left: "65%",
+                          width: "20%",
+                          top: 0,
+                        }}
+                        animate={{
+                          y: ["10%", "25%", "10%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          delay: 1.0,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
                         <StaticImage
-                          name="BitBot"
-                          filename="index_bitbot.png"
+                          name="Minecraft server"
+                          filename="index_minecraft.png"
                           style={{
-                            filter:
-                              "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
                             display: "block",
                             width: "100%",
                           }}
                         />
-                      </a>
+                      </motion.div>
+                      <StaticImage
+                        name="Rack server"
+                        filename="index_server.png"
+                        style={{
+                          width: "60%",
+                          bottom: 0,
+                          left: "20%",
+                          position: "absolute",
+                          display: "block",
+                        }}
+                      />
                     </motion.div>
-                    <StaticImage
-                      name="BitBot"
-                      filename="index_server.png"
-                      style={{
-                        width: "70%",
-                        bottom: 0,
-                        left: "15%",
-                        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
-                        position: "absolute",
-                        display: "block",
-                      }}
-                    />
                   </IndexContent>
                   <IndexText style={{ textAlign: "right" }}>
-                    <MoshHeader>No app restrictions.</MoshHeader>
-                    <MoshSubtitle>
-                      Outside of open-sourcing your software and a small
-                      attribution, there are no restrictions on what you can do
-                      with your software as long as it is for the benefit of the
-                      UT Dallas community.
-                    </MoshSubtitle>
+                    <motion.div
+                      initial={{ x: 10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <MoshHeader>No app restrictions.</MoshHeader>
+                      <MoshSubtitle>
+                        Outside of open-sourcing your software (if applicable)
+                        and a small attribution, there are no restrictions on
+                        what you can do with your software as long as it is for
+                        the benefit of the UT Dallas community.
+                      </MoshSubtitle>
+                    </motion.div>
                   </IndexText>
                 </>
               )}
@@ -307,17 +319,122 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           <Divider style={{ margin: 0 }} />
 
           <IndexSection>
-            <IndexText>
-              <MoshHeader>We'll get it done.</MoshHeader>
-              <MoshSubtitle>
-                Whether you want to run your software in a Linux container or
-                virtual machine, we've got you covered. Need to run a database?
-                Sure. We will help you get everything running.
-              </MoshSubtitle>
-            </IndexText>
-            <IndexContent>
-              <StaticImage name="Test image" filename="index_test.png" />
-            </IndexContent>
+            <InView threshold={0.25}>
+              {({ ref, inView }) => (
+                <>
+                  <IndexText>
+                    <motion.div
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={
+                        inView && {
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <MoshHeader>We'll get it done.</MoshHeader>
+                      <MoshSubtitle>
+                        Want to run your software in a Linux container or
+                        virtual machine? We've got you covered. Need to run a
+                        database inside of a Docker container? Sure. We'll help
+                        you get everything running.
+                      </MoshSubtitle>
+                    </motion.div>
+                  </IndexText>
+                  <IndexContent
+                    style={{
+                      position: "relative",
+                      paddingBottom: "50%",
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={
+                        inView && {
+                          opacity: 1,
+                          transition: { duration: 0.5 },
+                        }
+                      }
+                      ref={ref}
+                    >
+                      <motion.div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          height: "100%",
+                          width: "100%",
+                        }}
+                        animate={{
+                          y: ["0%", "3%", "0%"],
+                        }}
+                        transition={{
+                          duration: 5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }}
+                      >
+                        <StaticImage
+                          name="Ubuntu"
+                          filename="index_ubuntu.png"
+                          style={{
+                            height: "17.5%",
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            display: "block",
+                          }}
+                        />
+                        <StaticImage
+                          name="Docker"
+                          filename="index_docker.png"
+                          style={{
+                            height: "17.5%",
+                            top: "25%",
+                            left: 0,
+                            right: 0,
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            display: "block",
+                          }}
+                        />
+                        <StaticImage
+                          name="Fedora"
+                          filename="index_fedora.png"
+                          style={{
+                            height: "17.5%",
+                            top: "50%",
+                            left: 0,
+                            right: 0,
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            display: "block",
+                          }}
+                        />
+                      </motion.div>
+                      <StaticImage
+                        name="Rack server"
+                        filename="index_server.png"
+                        style={{
+                          width: "60%",
+                          bottom: 0,
+                          left: "20%",
+                          position: "absolute",
+                          display: "block",
+                        }}
+                      />
+                    </motion.div>
+                  </IndexContent>
+                </>
+              )}
+            </InView>
           </IndexSection>
 
           <Divider style={{ margin: 0 }} />
